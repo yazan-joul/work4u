@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>work4U-addjob</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+      
+        <header>
+        
+    <ul>
+    <li><a href="login.html"><img class="label" src="img/av.jpeg"></a></li>
+    <li><a href="home.html"><img class="label" src="img/workru.jpg"></a></li>
+    </ul>
+        <ul>
+      <li>  <a href="jobs.html"  >jobs</a></li>
+ 		<li><a href="aboutus.html"  >about us</a></li>
+ 		</ul>
+       </header>
+      
+
+<body>
+	<img class="wave" src="img/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="img/bg.svg">
+		</div>			
+		<div class="box-content">
+			<form action="addjob.html">
+				<h2 class="titl">add job</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-job"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>name</h5>
+           		   		<input list="job" type="text" class="input" id="name">
+<datalist id="job">    
+<option>programmer</option>
+<option>doctor</option>
+<option>teacher</option>
+<option>cleaner</option>
+<option>garden</option>
+<option>gaurd</option>
+</datalist>    
+           		   </div>
+           		</div>
+		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-job"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>location</h5>
+           		   		<input type="text" class="input" id="loc">
+           		   </div>
+           		</div>
+		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-job"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>details</h5>
+           		   		<input type="text" class="input" id="dtl">
+           		   </div>
+           		</div>
+		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-job"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>phone number</h5>
+           		   		<input type="text" class="input" id="phnum">
+           		   </div>
+	</div> 		
+		
+			<input type="button" class="btn" value="Add" onclick="addJob()">
+				   </form>
+           	         		
+				</div>
+				</div>
+				   <script type="text/javascript" src="js/main.js"></script>
+ <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <script>
+            function addJob() {//تأخذ صفات ال(job) ورسلها الى(addjob) التي تحفظ ال(job)
+            //واذا نجحت العملية تنقل الى الصفحة الرئيسية.
+            var model = {
+
+                "name": document.getElementById("name").value,
+                "location": document.getElementById("loc").value,
+                "details": document.getElementById("dtl").value,
+                "phonenum": document.getElementById("phnum").value,
+                "iduser": window.localStorage.getItem('id')
+                
+            };
+
+    $.ajax({
+                type: "POST",
+                url: "/admin/addJob",
+
+                ContentType: "application/json ;charset=UTF-8",
+
+                crossOrigin: true,
+                dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: this.JSON.stringify(model),
+
+                success: function(data) {
+                console.log(data);
+if(data){
+	window.location.href = "home.html";
+
+                }
+                },
+                error: function(jqXHR, testStatus, errorThrown) {
+                    console.log("error");
+                }
+            });
+        }
+    
+    
+    </script>
+</body>
+</html>

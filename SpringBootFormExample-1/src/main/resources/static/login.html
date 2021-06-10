@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>work4U-login</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<img class="wave" src="img/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="img/bg.svg">
+		</div>              <div class="box-content">
+			<form action="index.html">
+				<img class="imgav" src="img/avatar.svg">
+		 <br/><br/>  <h4 ><img class="title"  src="img/logo.png"></h4>
+           		<br/><div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Username</h5>
+           		   		<input type="text" class="input" id="username">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" class="input" id="pass">
+            	   </div>
+            	</div>
+            	<a href="#">Forgot Password?</a>
+            	<a href="register.html">dont have an account?</a>
+            	<input type="button" class="btn" value="Login" onclick="login()" >
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function login() {//تأخد ال(username)و(password) وترسلهم الى عملية(checkuser)والتي تحقق اذا المستخدم موجود ،واذا اعادت ترو العملية تنقل الى الصفحة الرئيسية.
+        	var model = {
+
+                "username": document.getElementById("username").value,
+                "password": document.getElementById("pass").value,
+            };
+
+    $.ajax({
+                type: "POST",
+                url: "/admin/CheckUser",
+
+                ContentType: "application/json ;charset=UTF-8",
+
+                crossOrigin: true,
+                dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: this.JSON.stringify(model),
+
+                success: function(data) {
+                console.log(data);
+                if(data[0]=="true"){           	
+                	window.location.href = "home.html";
+                	localStorage.setItem("id", data[1]);
+                	}else{
+alert("the user or the password are wrong");                		
+                	}
+                
+                },
+                
+                error: function(jqXHR, testStatus, errorThrown) {
+                    console.log("error");
+                }
+            });
+        }
+    
+    
+    
+    </script>
+</body>
+</html>

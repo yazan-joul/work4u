@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        
+</head>
+        <title>home</title>
+        <link rel="stylesheet" href="style2.css" >
+    </head>
+    <body>    
+   
+    <img class="wave" src="img/wave.png">
+
+        <header>
+        
+    <ul>
+   <li><a href="login.html"><img class="label" src="img/user.png"></a></li>
+   <li><a href="home.html"><img class="label" src="img/logo.png"></a></li>
+     </ul>
+        <ul>
+        <li><a href="jobs.html" >jobs</a></li>
+ 		<li><a href="aboutus.html"  >about us</a></li>
+ 		</ul>
+       </header>
+       
+      <div id="sec" class="divtable">
+       	        <table class="table"  id = 'message' >
+					    <thead>
+			        	<tr >        	
+						<th id="det">details</th>
+						<th id="phnum">phone number</th>
+			 			<th id="loc">location</th>
+			        	<th id="name">job</th>
+			        </tr>
+			        	</thead>
+			        	<tr></tr><tr></tr><tr></tr>
+			        </table>
+</div>
+
+  <ul  >     
+       <li>   <form method="get" action="addjob.html">
+             <input type="submit" class="btnadd"  onclick="addjob.html" value="add job"></form>
+
+       </li>
+  </ul>
+    <script type="text/javascript">
+    
+function rem(rmvId){/* تأخذ ال(id)مدخل في ال(input) وترسله الى ميثود حذف المهنة */       
+	      
+         console.log(rmvId);
+         var data = new FormData();
+         data.append("id", rmvId);
+         fetch('/admin/removeJob/', {
+             method: 'POST',
+             body: data,
+             
+         }).then((response) => { 
+        	 window.location.reload();
+         })
+        	 
+         
+}
+</script>
+  
+    <script type="text/javascript">//ترسل(id)الخاص بالمستخدم من ال (localstorage)
+    ///الى عملية (usersjobs) وتستقبل البيانات التي تعيدها وهي ال(jobs) التي اضافها المستخدم  وثم تطبعهم
+    	 
+         var data = new FormData();
+        data.append("id", localStorage.getItem("id"));
+       var ii=localStorage.getItem("id");
+       console.log(ii);
+        fetch('/admin/usersJobs/id?id='+ii, {
+            method: 'POST',
+            body: data,
+            
+        }).then((response) => { 
+                    return response.json().then((data) => {
+                        console.log(data);
+                        let result = data;
+
+                        let str = `  <thead>
+    			        	<tr> 
+    			        	<th         >edit</th>	
+     			        	<th         >remove</th>	
+     			            <th id="det">details</th>
+    						<th id="phnum">phone number</th>
+    			 			<th id="loc">location</th>
+    			        	<th id="name">job</th>
+    			        </tr>
+    			        	</thead>
+    			        	<tr></tr><tr></tr><tr></tr>
+    			        </table> 
+    			        
+    			        <table class="table">
+
+							<table class = "table">`;
+							console.log(result)
+							var table = $(".table")
+							str+="<tr>"+"</tr>";
+                    		 
+							for(i=0;i<result.length;i++)	{
+								str+=`<tr></tr>
+									<td><input onclick="rem(${result[i].id})"  type="button"class="btn" value="remove" ></td>
+									<td><a><input onclick="hreff(${result[i].id})" href="editjob.html"  type="button" class="btn" value="edit"  ></a></td>
+									<td>${result[i].details}</td>
+									<td>${result[i].phonenum}</td>
+									<td>${result[i].location}</td>
+								    <td>${result[i].name}</td>
+								    
+									`;
+											str +="</tr>";
+									$('message').html(table);
+								}
+							str += '</table>'
+							document.getElementById('message').innerHTML = str;
+							console.log("successfuly",data);
+   
+                        
+                        return data;
+                    }).catch((err) => {
+                        console.log(err);
+                    }) 
+                });
+        
+        
+        function hreff(id){
+        	
+        	window.location.href = "editjob.html?id="+id;
+        }
+
+ </script>
+  
+  
+ </body>
+</html>

@@ -1,0 +1,166 @@
+*{
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+}
+
+.label{
+	position: absolute;
+	height: 6%;
+	margin-right:10px;
+}
+header{
+	display: flex;
+	justify-content: space-between;
+    padding : 20px 5% 20px 2%;
+background-color:#eee;
+}	
+
+ 
+ul {
+list-style: none;
+text-align: right;
+}
+ul li {
+	display: inline-block;
+	padding: 0px 20px;
+margin-top:5px;
+}
+ul li a{
+transition: all 0.3s ease 0s;
+font-size: 30px;
+display: block;
+text-decoration: none;
+color:black;
+}
+ul li a:hover{
+	color: #38d39f;
+}
+.srch{
+	padding: 3px;
+	color: #fff;
+	font-size: 18px;
+	color: black;
+	margin-top: 10px ;
+	border: inset;
+	border-radius: 5px;
+	border-color:#38d39f;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.wave{
+	position: fixed;
+	margin-top: 130px;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
+
+.img{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+ table ,th,tr,td {
+border:groove;	
+} 
+.table{
+	position: absolute;
+margin: 30px;
+	width: 80%; 
+	margin-left:15%;
+font-size: 20px;
+border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.table thead tr {
+    background-image:  linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+    color: #ffffff;
+    text-align: center;
+}
+.table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+}
+
+.table th,.table td {
+    padding: 12px 15px;
+}
+.divtable{
+	width: 80%; 
+	margin-left:12.5%;	
+	
+}
+	.imgs{
+	width:100px;
+		height: 200px;
+	}
+
+.srch_submit:hover{
+	color: #38d39f;
+}
+
+.srch_submit{
+	font-family: 'Poppins', sans-serif;
+	padding: 3px;
+	font-size: 16px;
+	color: black;
+	background-color:rgb(253,253,253);
+	margin-top: 10px ;
+	margin-left: -20px ;
+	border: outset;
+	border-color:#38d39f;
+	border-radius: 5px;	
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+
+}
+
+.btnadd{
+	display: block;
+	width: 100px;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;	
+position:absolute;
+bottom:20px;
+right:20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn{
+	display: block;
+	width: 100px;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;	
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+
+}
+ div {
+	  direction: rtl;
+}

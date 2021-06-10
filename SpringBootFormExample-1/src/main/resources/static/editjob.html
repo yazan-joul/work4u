@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>work4U-edit-job</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+      
+            <header>
+        
+    <ul>
+   <li><a href="login.html"><img class="label" src="img/user.png"></a></li>
+   <li><a href="home.html"><img class="label" src="img/logo.png"></a></li>
+     </ul>
+        <ul>
+        <li><a href="jobs.html" >jobs</a></li>
+ 		<li><a href="aboutus.html"  >about us</a></li>
+ 		</ul>
+       </header>
+
+
+<body>
+	<img class="wave" src="img/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="img/bg.svg">
+		</div>			
+		<div class="box-content">
+			<form action="edit_job.html">
+				<h2 class="titl">edit job</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-job"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>name</h5>
+           		   		<input list="job" type="text" class="input" id="name">
+<datalist id="job">    
+<option>programmer</option>
+<option>doctor</option>
+<option>teacher</option>
+<option>cleaner</option>
+<option>garden</option>
+<option>gaurd</option>
+</datalist>    
+           		   </div>
+           		</div>
+		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-job"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>location</h5>
+           		   		<input type="text" class="input" id="loc">
+           		   </div>
+           		</div>
+		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-job"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>details</h5>
+           		   		<input type="text" class="input" id="dtl">
+           		   </div>
+           		</div>
+		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-job"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>phone number</h5>
+           		   		<input type="text" class="input" id="phnum">
+           		   </div>
+	</div> 		
+		
+			<input type="button" class="btn" value="edit" onclick="updateUser()">
+				   </form>
+           	         		
+				</div>
+				</div>
+				   <script type="text/javascript" src="js/main.js"></script>
+ <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+    
+    var $_GET = {};
+    if(document.location.toString().indexOf('?') !== -1) {
+        var query = document.location
+                       .toString()
+                       // get the query string
+                       .replace(/^.*?\?/, '')
+                       // and remove any existing hash string (thanks, @vrijdenker)
+                       .replace(/#.*$/, '')
+                       .split('&');
+
+        for(var i=0, l=query.length; i<l; i++) {
+           var aux = decodeURIComponent(query[i]).split('=');
+           $_GET[aux[0]] = aux[1];
+        }
+    }
+    
+    
+    function updateUser(){
+     
+
+  
+                
+            
+        
+        var data = new FormData();
+      data.append("id", $_GET['id']);
+      
+      
+      data.append("name", document.getElementById("name").value);
+      data.append("location", document.getElementById("loc").value);
+  	  data.append( "details", document.getElementById("dtl").value);
+   	  data.append( "phonenum", document.getElementById("phnum").value);
+   	  data.append( "iduser", window.localStorage.getItem('id'));
+      //  data.append("job", model);
+      
+        console.log($_GET['id']);
+        console.log(data);
+        fetch('/admin/updateJobs/', {
+            method: 'POST',
+            body: data,
+            
+        }).then((response) => { 
+                    return response.json().then((data) => {
+                      //  console.log(data);
+							//document.getElementById('message').innerHTML = str;
+							console.log("successfuly",data);
+		                	window.location.href = "home.html"; 
+                        return data;
+                    }).catch((err) => {
+                        console.log(err);
+                    }) 
+                });
+        
+
+        
+    }
+    </script>
+    
+    
+</body>
+</html>
