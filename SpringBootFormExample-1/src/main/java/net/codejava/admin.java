@@ -52,8 +52,8 @@ udao.saveUser(x);
 	@PostMapping("admin/updateJobs/")
     public int updateById(@RequestParam("id") int id,
     		@RequestParam("name") String name,
-    		@RequestParam("location") String details,
-    		@RequestParam("details") String location,
+    		@RequestParam("location") String location,
+    		@RequestParam("details") String details,
     		@RequestParam("phonenum") int phone)
     {
 		
